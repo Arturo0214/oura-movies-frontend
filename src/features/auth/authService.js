@@ -57,6 +57,7 @@ const logout = () => {
 const adminLogin = async (adminData) => {
   const response = await axios.post(`${API_URL}/admins/login`, adminData)
   if (response.data) {
+    admin = response.data
     setCookie('admin', JSON.stringify(response.data), 1)
   }
   return admin

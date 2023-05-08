@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { login, reset } from '../features/auth/authSlice'
-import { toast} from 'react-toastify'
+import { adminLogin, reset } from '../features/auth/authSlice'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Spinner from "../components/Spinner"
 import NavbarLogin from "../components/NavbarLogin"
@@ -10,7 +10,7 @@ import Footer from "../components/Footer"
 import mail from "../assets/email.png"
 import pass from "../assets/candado.png"
 
-const Login = () => {
+const LoginAdmin = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   
@@ -37,8 +37,7 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { email, password} = formData // Incluimos la selección del usuario
-    dispatch(login({ email, password})) // Enviamos la selección del usuario a través de la acción login()
-    
+    dispatch(adminLogin({ email, password})) // Enviamos la selección del usuario a través de la acción adminLogin()
   }
   if (isLoading) {
     return <Spinner/>
@@ -51,7 +50,7 @@ const Login = () => {
       <>
         <section className='container formu-2'>
           <h1 className="login">
-            Login
+            Admin Login
           </h1>
           <br />
         <section className='form'>
@@ -110,4 +109,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginAdmin

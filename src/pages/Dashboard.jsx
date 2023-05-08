@@ -11,7 +11,7 @@ import Footer from "../components/Footer"
 const Dashboard = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {user} = useSelector((state) => state.auth)
+  const {user, admin} = useSelector((state) => state.auth)
   
 
   return (
@@ -21,7 +21,7 @@ const Dashboard = () => {
       </>
       <>
         <section className="container formu">
-          <h3 className="register">Welcome {user && user.user.name}</h3>
+          <h3 className="register">Welcome {user && user.name || admin && admin.name}</h3>
             <p>Mis Tareas</p>
         </section>
       </>
