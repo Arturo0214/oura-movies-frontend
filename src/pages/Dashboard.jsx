@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { toast } from 'react-toastify'
 import './dashboard.css'
-import Cookies from 'js-cookie'
 import Spinner from "../components/Spinner"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
@@ -17,9 +16,9 @@ import movie from '../assets/camara.png'
 const Dashboard = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const {user} = useSelector((state) => state.auth)
   const {movies, isLoading, error, message} = useSelector((state) => state.movie) 
-  const [userInfo, setUserInfo] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
   
   //useEffect para users
@@ -27,23 +26,15 @@ const Dashboard = () => {
     if (error) {
       toast.error(message)
     }
-    if (!user && !userInfo) {
-      const userCookie = Cookies.get('user')
-      if (userCookie || adminCookie) {
-        setUserInfo(JSON.parse(userCookie))
-        setAdminInfo(JSON.parse(adminCookie))
-      } else {
+    if (!user) {
         navigate('/login')
-      }
     } else {
-      if (user) {
-        dispatch(getMovies())
-      }
+      dispatch(getMovies())
     }
     return () => {
       dispatch(reset())
     }
-  }, [user, userInfo, navigate, error, message, dispatch])
+  }, [user, navigate, error, message, dispatch])
   
   // método que actualiza la cadena de búsqueda actual
   const handleSearch = (event) => {

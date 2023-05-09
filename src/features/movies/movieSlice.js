@@ -11,7 +11,7 @@ const initialState = {
 // crear una nueva pelicula
 export const createMovie = createAsyncThunk('movies/create', async (movieData, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.admin.token
+    const token = thunkAPI.getState().auth.user.token
     return await movieService.createMovie(movieData, token)
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
@@ -23,7 +23,7 @@ export const createMovie = createAsyncThunk('movies/create', async (movieData, t
 export const getMovies = createAsyncThunk('movies/get', async (_, thunkAPI) => {
   try {
     const state = thunkAPI.getState().auth
-    const token = state.user.token || state.admin.token
+    const token = state.user.token
     if (!token) {
       return thunkAPI.rejectWithValue('No hay token disponible')
     }

@@ -2,10 +2,7 @@ import axios from 'axios'
 
 const API_URL = 'https://aggressive-pear-shoulder-pads.cyclic.app/api'
 
-
 let user = null
-let admin = null
-
 //Registrar un usuario
 const register = async (userData) => {
   const response = await axios.post(`${API_URL}/users`, userData)
@@ -49,23 +46,7 @@ const login = async (userData) => {
 
 // Cerrar sesión como usuario
 const logout = () => {
-  user = null
   deleteCookie('user')
-}
-
-// Iniciar sesión como administrador
-const adminLogin = async (adminData) => {
-  const response = await axios.post(`${API_URL}/admins/login`, adminData)
-  if (response.data) {
-    admin = response.data
-    setCookie('admin', JSON.stringify(response.data), 1)
-  }
-  return admin
-}
-// Cerrar sesión como administrador
-const adminLogout = () => {
-  admin = null
-  deleteCookie('admin')
 }
 
 // Verificar si el usuario está autenticado
@@ -73,24 +54,22 @@ const isUserLoggedIn = () => {
   const userCookie = getCookie('user')
   return !!userCookie
 }
-  
-// Verificar si el usuario es un administrador autenticado
-const isUserAdmin = () => {
-  const adminCookie = getCookie('admin')
-  return !!adminCookie
+// Verificar si el usuario es administrador
+export const isUserAdmin = () => {
+  const userCookie = getCookie('user')
+  if (userCookie) {
+    const user = JSON.parse(userCookie)
+    return user.isAdmin === true
+  }
+  return false
+}
+
+const authService = {
+  register,
+  login,
+  logout,
+  isUserLoggedIn,
+  isUserAdmin
 }
   
-  const authService = {
-    register,
-    login,
-    logout,
-    adminLogin,
-    adminLogout,
-    isUserLoggedIn,
-    isUserAdmin,
-    setUser: (newUser) => {
-      user = newUser
-    }
-  }
-  
-  export default authService
+export default authService

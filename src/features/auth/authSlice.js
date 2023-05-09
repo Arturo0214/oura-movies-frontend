@@ -1,16 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import authService from '../auth/authService'
-import Cookies from 'js-cookie'
+import authService, {isUserAdmin} from '../auth/authService'
 
-const user = Cookies.get(('user'))
-
-const initialState = {
-  user: user ? user : null,
-  admin: null,
+export const initialState = {
+  user: null,
   error: null,
   isLoading: false,
   isSuccess: false,
-  isAdminLoggedIn: false,
+  isAdminLoggedIn: isUserAdmin(),
   isAuthenticated: false,
   message: ''
 }
@@ -32,27 +28,13 @@ export const login = createAsyncThunk('auth/login', async (userData, {rejectWith
   }
 })
 
-export const adminLogin = createAsyncThunk('auth/adminLogin', async (adminData, { rejectWithValue }) => {
+export const logout = createAsyncThunk('auth/logout', async (_, {rejectWithValue}) => {
   try {
-    return await authService.adminLogin(adminData)
-  } catch (error) {
-    return rejectWithValue(error.response.data)
-  }
-})
-
-export const logout = createAsyncThunk('auth/logout', async (_, { dispatch, getState, rejectWithValue }) => {
-  try {
-    if (getState().auth.isAdminLoggedIn) {
-      await authService.adminLogout()
-    } else {
-      await authService.logout()
-    }
-    dispatch(setUser(null))
-    dispatch(setAdmin(null))
+    await authService.logout()
     return initialState
   } catch (error) {
-      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-      return rejectWithValue(message)
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    return rejectWithValue(message)
   }
 })
 
@@ -65,9 +47,8 @@ export const authSlice = createSlice({
           state.isLoading = false
           state.message = ''
           state.error = null
-          state.admin = null
           state.user = null
-          state.isAdminLoggedIn = null
+          state.isAdminLoggedIn = false
           state.isAuthenticated = false
       },
   },
@@ -94,37 +75,15 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.isAuthenticated = true
-        state.isAdminLoggedIn = false
+        state.isAdminLoggedIn = isUserAdmin()
         state.user = action.payload
-        state.admin = null
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false
         state.isSuccess = false
         state.error = true
         state.user = null
-        state.admin = null
         state.isAdminLoggedIn = false
-        state.message = action.payload
-      })
-      .addCase(adminLogin.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(adminLogin.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isSuccess = true
-        state.isAdminLoggedIn = true
-        state.isAuthenticated = true
-        state.admin = action.payload
-        state.user = null
-      })
-      .addCase(adminLogin.rejected, (state, action) => {
-        state.isLoading = false
-        state.isSuccess = false
-        state.isAdminLoggedIn = false
-        state.isAuthenticated = false
-        state.admin = null
-        state.user = null
         state.message = action.payload
       })
       .addCase(logout.pending, (state) => {
@@ -133,12 +92,9 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.isLoading = false
         state.isSuccess = false
-        if(state.isAdminLoggedIn !== undefined && state.isAdminLoggedIn){
-          state.isAdminLoggedIn = false
-        }
+        state.isAdminLoggedIn = false
         state.isAuthenticated = false
         state.user = null
-        state.admin = null
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false

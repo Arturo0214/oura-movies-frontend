@@ -9,7 +9,7 @@ const Navbar = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {user, admin} = useSelector((state) => state.auth)
+  const {user} = useSelector((state) => state.auth)
 
   const isLoginPage = location.pathname === '/login'
   const isDashboardPage = location.pathname === '/dashboard'
@@ -25,7 +25,7 @@ const Navbar = () => {
         <section className="container-fluid justify-content-start">
           <ul>
             <li className="nav oura">
-              {user || admin ? (
+              {user ? (
                 <Link to="/dashboard">
                   <img src={logo} alt="Logo" />
                 </Link>
@@ -37,9 +37,9 @@ const Navbar = () => {
             </li>
           </ul>
           <ul>
-          {user || admin ? (<div className='nav heading'>
+          {user ? (<div className='nav heading'>
             <h3 className="welcome">
-              Welcome, {user && user.name || admin && admin.name}!
+              Welcome, {user && user.name}!
             </h3>
          </div>)
          : 
@@ -50,7 +50,7 @@ const Navbar = () => {
         <section className="navbar-nav container-fluid justify-content-end">
           <ul className="nav-item">
             <li className="nav">
-              {user || admin ? (
+              {user ? (
                 <>
                 <button className="btn gradient-blue" onClick={onLogout}>
                   <strong>Log Out</strong>

@@ -5,7 +5,7 @@ import '../pages/dashboard.css'
 
 const Cards = ({movie}) => {
   const dispatch = useDispatch()
-  const {user, admin} = useSelector((state) => state.auth)
+  const {user} = useSelector((state) => state.auth)
   return (
     <>
 <>
@@ -16,7 +16,7 @@ const Cards = ({movie}) => {
     </div>
     <p> {movie.popularity} </p>
     
-    { admin && (
+    { user.isAdmin === true && (
       <button className="btn btn-danger close" onClick={() => dispatch(deleteMovie(movie._id))}>
         Delete
       </button>
