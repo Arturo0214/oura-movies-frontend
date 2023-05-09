@@ -1,8 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from '../auth/authService'
+import Cookies from 'js-cookie'
+
+const user = Cookies.get(('user'))
 
 const initialState = {
-  user: null,
+  user: user ? user : null,
   admin: null,
   error: null,
   isLoading: false,
@@ -21,12 +24,11 @@ export const register = createAsyncThunk('auth/register', async (user, thunkAPI)
   }
 })
 
-export const login = createAsyncThunk('auth/login', async (userData, thunkAPI) => {
+export const login = createAsyncThunk('auth/login', async (userData, {rejectWithValue}) => {
   try {
     return await authService.login(userData)
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-    return thunkAPI.rejectWithValue(message)
+    return rejectWithValue(error.response.data)
   }
 })
 
@@ -38,20 +40,21 @@ export const adminLogin = createAsyncThunk('auth/adminLogin', async (adminData, 
   }
 })
 
-export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logout = createAsyncThunk('auth/logout', async (_, { dispatch, getState, rejectWithValue }) => {
   try {
-    if (thunkAPI.getState().auth.isAdminLoggedIn) {
+    if (getState().auth.isAdminLoggedIn) {
       await authService.adminLogout()
     } else {
       await authService.logout()
     }
+    dispatch(setUser(null))
+    dispatch(setAdmin(null))
     return initialState
   } catch (error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-      return thunkAPI.rejectWithValue(message)
+      return rejectWithValue(message)
   }
-  }
-)
+})
 
 export const authSlice = createSlice({
   name: 'auth',

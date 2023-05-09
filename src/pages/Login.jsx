@@ -5,10 +5,11 @@ import { login, reset } from '../features/auth/authSlice'
 import { toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Spinner from "../components/Spinner"
-import NavbarLogin from "../components/NavbarLogin"
+import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import mail from "../assets/email.png"
 import pass from "../assets/candado.png"
+import Cookies from 'js-cookie'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -20,9 +21,10 @@ const Login = () => {
     password: ''
   })
   const {email, password} = formData
+  
   useEffect(() => {
     if (error) {
-      toast.error(message);
+      toast.error(message)
     } else if (isSuccess) {
       navigate('/dashboard')
     } else {
@@ -38,15 +40,15 @@ const Login = () => {
     e.preventDefault();
     const { email, password} = formData // Incluimos la selección del usuario
     dispatch(login({ email, password})) // Enviamos la selección del usuario a través de la acción login()
-    
   }
+  
   if (isLoading) {
     return <Spinner/>
   }  
   return (
     <>
       <>
-        <NavbarLogin/>
+        <Navbar/>
       </>
       <>
         <section className='container formu-2'>

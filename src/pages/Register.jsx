@@ -66,8 +66,8 @@ const Register = () => {
       </>
       <>
       <>
-        <section>
-          <div className="container formu">
+        <section className="center">
+          <div className="formu">
           <h1 className="register">
             Register
           </h1>

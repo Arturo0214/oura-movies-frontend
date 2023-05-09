@@ -5,7 +5,7 @@ import { adminLogin, reset } from '../features/auth/authSlice'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Spinner from "../components/Spinner"
-import NavbarLogin from "../components/NavbarLogin"
+import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import mail from "../assets/email.png"
 import pass from "../assets/candado.png"
@@ -20,9 +20,10 @@ const LoginAdmin = () => {
     password: ''
   })
   const {email, password} = formData
+
   useEffect(() => {
     if (error) {
-      toast.error(message);
+      toast.error(message)
     } else if (isSuccess) {
       navigate('/dashboard')
     } else {
@@ -45,7 +46,7 @@ const LoginAdmin = () => {
   return (
     <>
       <>
-        <NavbarLogin/>
+        <Navbar/>
       </>
       <>
         <section className='container formu-2'>

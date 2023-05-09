@@ -62,8 +62,6 @@ const adminLogin = async (adminData) => {
   }
   return admin
 }
-
-
 // Cerrar sesión como administrador
 const adminLogout = () => {
   admin = null
