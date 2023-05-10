@@ -12,17 +12,17 @@ const initialState = {
 //crear una nueva pelicula
 export const createMovie = createAsyncThunk('movies/create', async (movieData, thunkAPI) => {
   try {
-    const user = thunkAPI.getState().auth.user;
+    const user = thunkAPI.getState().auth.user
     if (!user || !user.isAdmin) {
-      throw new Error('No tienes permisos para crear una nueva película');
+      throw new Error('No tienes permisos para crear una nueva película')
     }
-    const token = user.token;
-    return await movieService.createMovie(movieData, token);
+    const token = user.token
+    return await movieService.createMovie(movieData, token)
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message);
   }
-});
+})
 
 //mostrar peliculas
 export const getMovies = createAsyncThunk('movies/get', async (_, thunkAPI) => {
@@ -42,11 +42,11 @@ export const getMovies = createAsyncThunk('movies/get', async (_, thunkAPI) => {
 // borrar una pelicula existente
 export const deleteMovie = createAsyncThunk('movies/delete', async (movieId, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.user.token
-    const isAdmin = await authService.isUserAdmin(token)
-    if (!isAdmin) {
-      throw new Error('No tienes permiso para borrar películas')
+    const user = thunkAPI.getState().auth.user;
+    if (!user || !user.isAdmin) {
+      throw new Error('No tienes permisos para borrar películas');
     }
+    const token = user.token;
     await movieService.deleteMovie(movieId, token)
     return movieId
   } catch (error) {
@@ -96,7 +96,7 @@ export const movieSlice = createSlice ({
       .addCase(deleteMovie.fulfilled, (state, action) => {
           state.isLoading = false
           state.isSuccess = true
-          state.movies = state.movies.filter((movie) => movie._id !== action.payload._id)
+          state.movies = state.movies.filter((movie) => movie._id !== action.payload)
       })
       .addCase(deleteMovie.rejected, (state, action) => {
           state.isLoading = false
@@ -105,6 +105,7 @@ export const movieSlice = createSlice ({
       })
   }
 })
+
 //el reset al estar dentro del reducer se exporta como una accion
 export const { reset } = movieSlice.actions
 export default movieSlice.reducer

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { deleteMovie } from "../features/movies/movieSlice";
-import { useSelector } from "react-redux";
-import MovieModal from "./MovieModal";
-import "../pages/dashboard.css";
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { deleteMovie } from "../features/movies/movieSlice"
+import { useSelector } from "react-redux"
+import MovieModal from "./MovieModal"
+import "../pages/dashboard.css"
 import like from '../assets/amor.png'
 import star from '../assets/estrella.png'
 
@@ -14,12 +14,12 @@ const Cards = ({ movie }) => {
   const [likes, setLikes] = useState(movie.likes)
 
   const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   const updateLikes = async (movieId, newLikes) => {
     try {
@@ -29,7 +29,7 @@ const Cards = ({ movie }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ likes: newLikes })
-      });
+      })
       
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -45,11 +45,18 @@ const Cards = ({ movie }) => {
     await updateLikes(movie._id, newLikes)
   }
 
+  const handleDeleteClick = async () => {
+    if (user.isAdmin) {
+      dispatch(deleteMovie(movie._id))
+    } else {
+      alert ("You dont have permission to delete movies.")
+    }
+  }
 
   return (
     <>
       <div className="card" style={{ maxWidth: "262px" }}>
-        <img src={movie.link} className="img-fluid" onClick={handleModalOpen} />
+        <img src={movie.link} className="img-fluid" style={{objectFit: 'fill'}}onClick={handleModalOpen} />
         <div className="card-body">
           <h4 className="card-title">{movie.title}</h4>
         </div>
@@ -59,16 +66,14 @@ const Cards = ({ movie }) => {
         style={{width: '30px', height: '30px'}}
         className='star' />  
         <p className="popularity"> <strong>{movie.popularity}</strong></p>
-
         {user.isAdmin === true && (
           <button
             className="btn btn-danger close"
-            onClick={() => dispatch(deleteMovie(movie._id))}
+            onClick={handleDeleteClick}
           >
             Delete
           </button>
         )}
-
         {user.isAdmin === false && (
           <div>
           <img
@@ -80,19 +85,15 @@ const Cards = ({ movie }) => {
           <p className="likes"><strong>{movie.likes}</strong></p>
           </div>
         )}
-        
         </section>
-
       </div>
-
-
       <MovieModal
         isOpen={isModalOpen}
         onRequestClose={handleModalClose}
         movie={movie}
       />
     </>
-  );
-};
+  )
+}
 
 export default Cards;
