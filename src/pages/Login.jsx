@@ -9,7 +9,6 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import mail from "../assets/email.png"
 import pass from "../assets/candado.png"
-import Cookies from 'js-cookie'
 
 const Login = () => {
   const dispatch = useDispatch()

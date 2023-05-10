@@ -8,16 +8,21 @@ const initialState = {
   isLoading: false,
   message: ''
 }
-// crear una nueva pelicula
+
+//crear una nueva pelicula
 export const createMovie = createAsyncThunk('movies/create', async (movieData, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.user.token
-    return await movieService.createMovie(movieData, token)
+    const user = thunkAPI.getState().auth.user;
+    if (!user || !user.isAdmin) {
+      throw new Error('No tienes permisos para crear una nueva película');
+    }
+    const token = user.token;
+    return await movieService.createMovie(movieData, token);
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-    return thunkAPI.rejectWithValue(message)
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    return thunkAPI.rejectWithValue(message);
   }
-})
+});
 
 //mostrar peliculas
 export const getMovies = createAsyncThunk('movies/get', async (_, thunkAPI) => {
@@ -34,11 +39,16 @@ export const getMovies = createAsyncThunk('movies/get', async (_, thunkAPI) => {
   }
 })
 
-//borrar una pelicula
-export const deleteMovie = createAsyncThunk('movies/delete', async (id, thunkAPI) => {
+// borrar una pelicula existente
+export const deleteMovie = createAsyncThunk('movies/delete', async (movieId, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.admin.token
-    return await movieService.deleteMovie(id, token)
+    const token = thunkAPI.getState().auth.user.token
+    const isAdmin = await authService.isUserAdmin(token)
+    if (!isAdmin) {
+      throw new Error('No tienes permiso para borrar películas')
+    }
+    await movieService.deleteMovie(movieId, token)
+    return movieId
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
     return thunkAPI.rejectWithValue(message)

@@ -98,7 +98,7 @@
   border: 1px solid #ccc;
   border-radius: 20px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  transform: rotateX(20deg)
+  transform: rotateX(20deg);
 }
 .center{
   display: flex;
@@ -126,4 +126,17 @@
 .input-group-text img{
   height: 25px;
   width: 25px;
+}
+.modal-image {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 200px);
+  object-fit: contain;
+  border-radius: 20px;
+}
+.modal-image img{
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transform: rotateX(20deg); 
 }
