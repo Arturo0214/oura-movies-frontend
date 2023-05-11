@@ -26,10 +26,20 @@ const Cards = ({ movie }) => {
 
   const handleLikeClick = (e) => {
     e.preventDefault()
-    dispatch(setMovieLikes({ movieId: movie._id, likes: movie.likes + 1 }))
-      .then((response) => {
-        setLikes(response.payload.likes.length)
-      })
+    const userId = user._id
+  
+    if (movie.likes.includes(userId)) {
+      const newLikes = movie.likes.filter((id) => id !== userId)
+      dispatch(setMovieLikes({ movieId: movie._id, likes: newLikes }))
+        .then((response) => {
+          setLikes(response.payload.likes.length)
+        })
+    } else {
+      dispatch(setMovieLikes({ movieId: movie._id, likes: [...movie.likes, userId] }))
+        .then((response) => {
+          setLikes(response.payload.likes.length)
+        })
+    }
   }
 
   const handleDeleteClick = async () => {
