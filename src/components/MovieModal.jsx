@@ -18,7 +18,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const MovieModal = ({ isOpen, onRequestClose, movie }) => {
+const MovieModal = ({ isOpen, onRequestClose, movie}) => {
   return (
     <Modal
       isOpen={isOpen}

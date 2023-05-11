@@ -12,13 +12,16 @@ const Cards = ({ movie }) => {
   const { user } = useSelector((state) => state.auth)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [likes, setLikes] = useState(movie.likes)
+  const [clicked, setClicked] = useState(false)
 
   const handleModalOpen = () => {
     setIsModalOpen(true)
+    setClicked(true)
   }
 
   const handleModalClose = () => {
     setIsModalOpen(false)
+    setClicked(false)
   }
 
   const updateLikes = async (movieId, newLikes) => {
@@ -55,8 +58,8 @@ const Cards = ({ movie }) => {
 
   return (
     <>
-      <div className="card" style={{ maxWidth: "262px" }}>
-        <img src={movie.link} className="img-fluid" style={{objectFit: 'fill'}}onClick={handleModalOpen} />
+      <div className={`card ${clicked ? "clicked" : ""}`} style={{ maxWidth: "262px" }}>
+        <img src={movie.link} className="img-fluid card-image" style={{objectFit: 'fill'}}onClick={handleModalOpen} />
         <div className="card-body">
           <h4 className="card-title">{movie.title}</h4>
         </div>
@@ -68,7 +71,7 @@ const Cards = ({ movie }) => {
         <p className="popularity"> <strong>{movie.popularity}</strong></p>
         {user.isAdmin === true && (
           <button
-            className="btn btn-danger close"
+            className="btn gradient-red text-white close"
             onClick={handleDeleteClick}
           >
             Delete
@@ -96,4 +99,4 @@ const Cards = ({ movie }) => {
   )
 }
 
-export default Cards;
+export default Cards
