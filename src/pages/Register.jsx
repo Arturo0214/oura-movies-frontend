@@ -10,6 +10,7 @@ import mail from '../assets/email.png'
 import usuario from '../assets/usuario.png'
 import passw1 from '../assets/bloqueado.png'
 import passw2 from '../assets/candado.png'
+import Swal from 'sweetalert'
 
 const Register = () => {
 
@@ -52,6 +53,7 @@ const Register = () => {
       } else {
         const userData = {name, email, password}
         dispatch(register(userData))
+        Swal("Register succesful!", "You'll be redirectioned to login", "success")
       }
   }
 

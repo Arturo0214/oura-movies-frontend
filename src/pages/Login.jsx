@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import mail from "../assets/email.png"
 import pass from "../assets/candado.png"
+import Swal from 'sweetalert'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -39,6 +40,7 @@ const Login = () => {
     e.preventDefault();
     const { email, password} = formData // Incluimos la selección del usuario
     dispatch(login({ email, password})) // Enviamos la selección del usuario a través de la acción login()
+    Swal("Login succesful!", "Redirectioning to Dashboard!", "success")
   }
   
   if (isLoading) {
