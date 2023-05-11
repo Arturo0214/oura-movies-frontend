@@ -36,7 +36,7 @@ const MovieModal = ({ isOpen, onRequestClose, movie}) => {
           <p className='font'> {movie.release_date} </p>
         </div>
       </div>
-      <button onClick={onRequestClose} className="btn btn-success close-2">Close</button>
+      <button onClick={onRequestClose} className="btn btn-danger close-2">Close</button>
     </Modal>
   );
 };

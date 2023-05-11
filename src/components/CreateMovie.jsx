@@ -3,7 +3,6 @@ import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { createMovie } from '../features/movies/movieSlice';
 
-
 const customStyles = {
   content: {
     display: 'flex',
@@ -37,7 +36,7 @@ const CreateMovie = ({ isOpen, onRequestClose }) => {
     poster_path: '',
     release_date: '',
     video: false,
-    likes: 0,
+    likes: [],
     link: '',
     trailer: '',
   });
@@ -70,7 +69,7 @@ const CreateMovie = ({ isOpen, onRequestClose }) => {
       poster_path: '',
       release_date: '',
       video: false,
-      likes: 0,
+      likes: [],
       link: '',
       trailer: '',
     })
@@ -253,7 +252,7 @@ const CreateMovie = ({ isOpen, onRequestClose }) => {
     <button className="btn gradient-blue mx-2" onClick={handleSubmit} style={{width: '160px'}}>
     <strong>Create Movie</strong>
     </button>
-    <button className="btn gradient-gray mx-2 close-2" onClick={onRequestClose}>
+    <button className="btn gradient-gray mx-2 close-2 text-white" onClick={onRequestClose}>
      Cancel
     </button>
     </div>

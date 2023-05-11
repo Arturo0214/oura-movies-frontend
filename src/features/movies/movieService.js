@@ -34,10 +34,21 @@ const deleteMovie = async (id, token) => {
   const response = await axios.delete(API_URL + id, config) 
   return response.data
 }
+const setLikes = async (id, likes, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const response = await axios.put(`${API_URL}${id}/like`, { likes }, config)
+  return response.data
+}
+
 
 const movieService = {
   getMovies,
   deleteMovie,
-  createMovie
+  createMovie,
+  setLikes
 }
 export default movieService

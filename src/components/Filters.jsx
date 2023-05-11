@@ -9,7 +9,7 @@ const Filters = ({ setSortBy, setShowAll, sortBy, showAll, setSortOrder, sortOrd
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
     } else {
       setSortBy(sortType)
-      setSortOrder('asc')
+      setSortOrder('desc')
     }
   }
 

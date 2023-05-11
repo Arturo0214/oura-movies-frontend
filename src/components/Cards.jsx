@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { deleteMovie } from "../features/movies/movieSlice"
+import { deleteMovie, setMovieLikes } from "../features/movies/movieSlice"
 import { useSelector } from "react-redux"
 import MovieModal from "./MovieModal"
 import "../pages/dashboard.css"
@@ -11,8 +11,8 @@ const Cards = ({ movie }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [likes, setLikes] = useState(movie.likes)
   const [clicked, setClicked] = useState(false)
+  const [likes, setLikes] = useState(movie.likes.length)
 
   const handleModalOpen = () => {
     setIsModalOpen(true)
@@ -24,28 +24,12 @@ const Cards = ({ movie }) => {
     setClicked(false)
   }
 
-  const updateLikes = async (movieId, newLikes) => {
-    try {
-      const response = await fetch(`/api/movies/${movieId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ likes: newLikes })
+  const handleLikeClick = (e) => {
+    e.preventDefault()
+    dispatch(setMovieLikes({ movieId: movie._id, likes: movie.likes + 1 }))
+      .then((response) => {
+        setLikes(response.payload.likes.length)
       })
-      
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-    } catch (error) {
-      console.error('There was an error updating likes:', error);
-    }
-  }
-
-  const handleLikeClick = async () => {
-    const newLikes = likes + 1
-    setLikes(newLikes)
-    await updateLikes(movie._id, newLikes)
   }
 
   const handleDeleteClick = async () => {
@@ -63,7 +47,7 @@ const Cards = ({ movie }) => {
         <div className="card-body">
           <h4 className="card-title">{movie.title}</h4>
         </div>
-        <section className="card-ending">
+        <section>
         <img 
         src={star} 
         style={{width: '30px', height: '30px'}}
@@ -85,7 +69,7 @@ const Cards = ({ movie }) => {
           style={{width: '30px', height: '30px'}}
           onClick={handleLikeClick}
           />
-          <p className="likes"><strong>{movie.likes}</strong></p>
+          <p className="likes"><strong>{likes}</strong></p>
           </div>
         )}
         </section>
