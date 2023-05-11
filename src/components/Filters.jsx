@@ -1,15 +1,20 @@
 import alfabet from '../assets/a-z.png'
 import rating from '../assets/rating.png'
 import video from '../assets/video.png'
+import likes from '../assets/amor.png'
 
-const Filters = ({ setSortBy, setShowAll, sortBy, showAll, setSortOrder, sortOrder, handleShowAll }) => {
+const Filters = ({ setSortBy, sortBy, showAll, setSortOrder, sortOrder, handleShowAll}) => {
 
   const handleSort = (sortType) => {
     if (sortType === sortBy) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
     } else {
       setSortBy(sortType)
-      setSortOrder('desc')
+      if (sortType === 'title') {
+        setSortOrder('desc')
+      } else if (sortType === 'popularity' || sortType === 'likes') {
+        setSortOrder('asc')
+      }
     }
   }
 
@@ -21,7 +26,6 @@ const Filters = ({ setSortBy, setShowAll, sortBy, showAll, setSortOrder, sortOrd
         </label>
         <img
           src={alfabet}
-          style={{ width: '80px', height: '80px' }}
           onClick={() => handleSort('title')}
           className={sortBy === 'title' ? 'active' : ''}
         />
@@ -32,9 +36,18 @@ const Filters = ({ setSortBy, setShowAll, sortBy, showAll, setSortOrder, sortOrd
         </label>
         <img
           src={rating}
-          style={{ width: '80px', height: '80px' }}
           onClick={() => handleSort('popularity')}
           className={sortBy === 'popularity' ? 'active' : ''}
+        />
+      </div>
+      <div className="titulos-filtros">
+        <label className="labels-filters">
+          <strong>Likes</strong>
+        </label>
+        <img
+          src={likes}
+          onClick={() => handleSort('likes')}
+          className={sortBy === 'likes' ? 'active': ''}
         />
       </div>
       <div className="titulos-filtros">
@@ -43,8 +56,7 @@ const Filters = ({ setSortBy, setShowAll, sortBy, showAll, setSortOrder, sortOrd
         </label>
         <img
           src={video}
-          style={{ width: '80px', height: '80px' }}
-          onClick={() => handleShowAll(setShowAll(true))}
+          onClick={() => handleShowAll()}
           className={showAll ? 'active' : ''}
         />
       </div>

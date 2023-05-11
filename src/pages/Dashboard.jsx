@@ -11,7 +11,7 @@ import Cards from '../components/Cards'
 import Filters from '../components/Filters'
 import { getMovies, reset } from '../features/movies/movieSlice'
 import movie from '../assets/camara.png'
-import buscar from '../assets/lupa.png';
+import buscar from '../assets/lupa.png'
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -23,6 +23,7 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState(null)
   const [sortOrder, setSortOrder] = useState(null)
   const [showAll, setShowAll] = useState(true)
+  const [movies2, setMovies2] = useState([])
   const [selectedGenre, setSelectedGenre] = useState(null)
 
   //useEffect para users
@@ -46,14 +47,15 @@ const Dashboard = () => {
     setShowAll(true)
   }
   const handleShowAll = () => {
+    const moviesCopy = [...movies]
+    setMovies2(moviesCopy)
     setShowAll(true)
   }
-
+  
   const handleGenreFilter = (genre) => {
     setSelectedGenre(genre)
     setShowAll(false)
   }
-
   const filteredMovies = movies
     .filter((movie) => {
       return movie.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -66,9 +68,11 @@ const Dashboard = () => {
     })
     .sort((a, b) => {
       if (sortBy === 'title') {
-        return a.title.localeCompare(b.title)
+        return sortOrder === 'asc' ? (a.title > b.title ? 1 : b.title > a.title ? -1 : 0) : (b.title > a.title ? 1 : a.title > b.title ? -1 : 0)
       } else if (sortBy === 'popularity') {
         return sortOrder === 'asc' ? a.popularity - b.popularity : b.popularity - a.popularity
+      } else if (sortBy === 'likes') { // Nuevo filtro para likes
+        return sortOrder === 'asc' ?(a.likes > b.likes ? 1 : b.likes > a.likes ? -1 : 0) : (b.likes > a.likes ? 1 : a.likes > b.likes ? -1 : 0)
       } else {
         return 0
       }
@@ -89,7 +93,6 @@ const Dashboard = () => {
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
           showAll={showAll}
-          setShowAll={setShowAll}
           handleShowAll={handleShowAll}
           handleGenreFilter={handleGenreFilter}
         />

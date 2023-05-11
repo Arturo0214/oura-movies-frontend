@@ -71,7 +71,7 @@ const Register = () => {
           <h1 className="register">
             Register
           </h1>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="register-group">
             <div className="form-group">
               <label><strong>Name:</strong></label>
               <div className="input-group">
@@ -154,11 +154,8 @@ const Register = () => {
             </button>
           </div>
         </form>
-          </div>
-        </section>
-        <section>
-          
-        </section>
+      </div>
+    </section>
       </>
       </>
       <>

@@ -1,14 +1,14 @@
 import React from 'react';
-import '../index.css'
+import '../index.css';
 
 const Footer = () => {
   return (
     <footer className="bg-light text-center text-dark fixed-bottom">
-      <div className="" >
+      <div className="">
         <section className="footer">
           <a>
             <strong>
-            Oura Movies
+              Oura Movies
             </strong>
           </a>
           <a>
