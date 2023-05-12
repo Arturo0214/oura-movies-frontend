@@ -23,7 +23,6 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState(null)
   const [sortOrder, setSortOrder] = useState(null)
   const [showAll, setShowAll] = useState(true)
-  const [movies2, setMovies2] = useState([])
   const [selectedGenre, setSelectedGenre] = useState(null)
 
   //useEffect para users
@@ -48,7 +47,8 @@ const Dashboard = () => {
   }
 
   const handleShowAll = () => {
-    dispatch(getMovies())
+    setShowAll(true)
+    setSelectedGenre(null)
   }
   
   const handleGenreFilter = (genre) => {
