@@ -72,7 +72,7 @@ const Dashboard = () => {
       } else if (sortBy === 'popularity') {
         return sortOrder === 'asc' ? a.popularity - b.popularity : b.popularity - a.popularity
       } else if (sortBy === 'likes') { // Nuevo filtro para likes
-        return sortOrder === 'asc' ?(a.likes > b.likes ? 1 : b.likes > a.likes ? -1 : 0) : (b.likes > a.likes ? 1 : a.likes > b.likes ? -1 : 0)
+        return sortOrder === 'asc' ?  a.likes.length - b.likes.length : b.likes.length - a.likes.length
       } else {
         return 0
       }

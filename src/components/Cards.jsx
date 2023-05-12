@@ -74,6 +74,7 @@ const Cards = ({ movie }) => {
         {user.isAdmin === false && (
           <div>
           <img
+          type="button"
           className="like"
           src={like}
           style={{width: '30px', height: '30px'}}

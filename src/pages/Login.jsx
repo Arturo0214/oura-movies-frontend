@@ -98,8 +98,8 @@ const Login = () => {
             </div>
             <br />
             <div className="center">
-              <button type='submit'className="btn gradient-green">
-                <strong>Log In</strong>
+              <button type='submit'className="btn gradient-blue3 text-white">
+                <strong>Sign In</strong>
               </button>
             </div>
             </form>

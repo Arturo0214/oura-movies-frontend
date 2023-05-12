@@ -1,6 +1,5 @@
 import alfabet from '../assets/a-z.png'
 import rating from '../assets/rating.png'
-import video from '../assets/video.png'
 import likes from '../assets/amor.png'
 
 const Filters = ({ setSortBy, sortBy, setSortOrder, sortOrder}) => {
