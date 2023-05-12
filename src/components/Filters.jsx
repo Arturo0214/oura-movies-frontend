@@ -3,7 +3,7 @@ import rating from '../assets/rating.png'
 import video from '../assets/video.png'
 import likes from '../assets/amor.png'
 
-const Filters = ({ setSortBy, sortBy, showAll, setSortOrder, sortOrder, handleShowAll}) => {
+const Filters = ({ setSortBy, sortBy, setSortOrder, sortOrder}) => {
 
   const handleSort = (sortType) => {
     if (sortType === sortBy) {
@@ -11,9 +11,9 @@ const Filters = ({ setSortBy, sortBy, showAll, setSortOrder, sortOrder, handleSh
     } else {
       setSortBy(sortType)
       if (sortType === 'title') {
-        setSortOrder('desc')
-      } else if (sortType === 'popularity' || sortType === 'likes') {
         setSortOrder('asc')
+      } else if (sortType === 'popularity' || sortType === 'likes') {
+        setSortOrder('desc')
       }
     }
   }
