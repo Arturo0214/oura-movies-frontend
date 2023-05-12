@@ -341,11 +341,22 @@
   box-shadow: none;
 }
 
+@media (max-width: 481px) {
+  .gradient-blue{
+    margin-left: 390px;
+    margin-top: -65px;
+  }
+  .footer{
+    font-size: 10.5;
+  }
+}
+
 /* Estilos para pantallas pequeñas */
 @media (max-width: 375px) {
   .formu {
     max-width: 320px;
-    max-height: 550px;
+    max-height: 450px;
+    margin-right: 40px;
   }
   .form-group {
     display: flex;
