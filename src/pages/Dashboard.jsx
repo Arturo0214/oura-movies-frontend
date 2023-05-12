@@ -121,6 +121,8 @@ const Dashboard = () => {
       <div className="movie-genre">
       <div className='filters-genre'>
         <h3 className='filter-title'>Movies Genre</h3>
+        <button className="btn gradient-blue3 text-white" onClick={() => handleShowAll('Comedy')}>All Movies</button>
+        <br />
         <button className="btn gradient-red text-white" onClick={() => handleGenreFilter('Action')}>Action</button>
         <br />
         <button className="btn gradient-black text-white" onClick={() => handleGenreFilter('Thriller')}>Thriller</button>
@@ -131,8 +133,8 @@ const Dashboard = () => {
         <br />
         <button className="btn gradient-gray text-white" onClick={() => handleGenreFilter('Sports')}>Sports</button>
         <br />
-        <button className="btn gradient-blue3 text-white" onClick={() => handleGenreFilter('Comedy')}>Comedy</button>
-        <button className="btn btn-danger text-white" onClick={() => handleShowAll('Comedy')}>All Movies</button>
+        <button className="btn gradient-yellow text-white" onClick={() => handleGenreFilter('Comedy')}>Comedy</button>
+        
       </div>
     </div>
     </>

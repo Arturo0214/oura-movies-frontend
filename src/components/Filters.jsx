@@ -50,16 +50,6 @@ const Filters = ({ setSortBy, sortBy, showAll, setSortOrder, sortOrder, handleSh
           className={sortBy === 'likes' ? 'active': ''}
         />
       </div>
-      <div className="titulos-filtros">
-        <label className="labels-filters">
-          <strong>All Movies</strong>
-        </label>
-        <img
-          src={video}
-          onClick={() => handleShowAll()}
-          className={showAll ? 'active' : ''}
-        />
-      </div>
     </div>
     
   )
