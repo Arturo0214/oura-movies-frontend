@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   const { user } = useSelector((state) => state.auth)
   const { movies, isLoading, error, message } = useSelector((state) => state.movie)
-  
+
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState(null)
   const [sortOrder, setSortOrder] = useState(null)
@@ -55,6 +55,7 @@ const Dashboard = () => {
   const handleGenreFilter = (genre) => {
     setSelectedGenre(genre)
     setShowAll(false)
+    dispatch(getMovies())
   }
   const filteredMovies = movies
     .filter((movie) => {
