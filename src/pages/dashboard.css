@@ -352,11 +352,11 @@
     max-height: 680px;
     height: 430px;
     width: 300px;
-    margin-top: -20px;
+    margin-top: -30px;
     margin-left: -20px;
   }
   .filters-genre button{
-    max-width: 80px;
+    max-width: 100px;
     max-height: 35px;
   }
   .filter-buttons{
