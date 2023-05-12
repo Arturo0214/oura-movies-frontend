@@ -26,12 +26,12 @@ const Register = () => {
   const dispatch = useDispatch()
 
   const {user, isLoading, error, isSuccess, message} = useSelector((state) => state.auth)
+  
   useEffect(() => {
 
     if (error) {
         toast.error(message)
     }
-
     if (isSuccess) {
         navigate('/login')
     }

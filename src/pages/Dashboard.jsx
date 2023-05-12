@@ -46,10 +46,9 @@ const Dashboard = () => {
     setSearchTerm(event.target.value)
     setShowAll(true)
   }
+
   const handleShowAll = () => {
-    const moviesCopy = [...movies]
-    setMovies2(moviesCopy)
-    setShowAll(true)
+    dispatch(getMovies())
   }
   
   const handleGenreFilter = (genre) => {
