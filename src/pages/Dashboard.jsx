@@ -55,7 +55,6 @@ const Dashboard = () => {
   const handleGenreFilter = (genre) => {
     setSelectedGenre(genre)
     setShowAll(false)
-    dispatch(getMovies())
   }
   const filteredMovies = movies
     .filter((movie) => {
@@ -121,19 +120,19 @@ const Dashboard = () => {
       <div className="movie-genre">
       <div className='filters-genre'>
         <h3 className='filter-title'>Movies Genre</h3>
-        <button className="btn gradient-blue3 text-white" onClick={() => handleShowAll('Comedy')}>All Movies</button>
+        <button className="btn gradient-blue3 text-white" type="button" onClick={() => handleShowAll('Comedy')}>All Movies</button>
         <br />
-        <button className="btn gradient-red text-white" onClick={() => handleGenreFilter('Action')}>Action</button>
+        <button className="btn gradient-red text-white" type="button" onClick={() => handleGenreFilter('Action')}>Action</button>
         <br />
-        <button className="btn gradient-black text-white" onClick={() => handleGenreFilter('Thriller')}>Thriller</button>
+        <button className="btn gradient-black text-white" type="button" onClick={() => handleGenreFilter('Thriller')}>Thriller</button>
         <br />
-        <button className="btn gradient-aqua text-white" onClick={() => handleGenreFilter('Fantasy')}>Fantasy</button>
+        <button className="btn gradient-aqua text-white" type="button" onClick={() => handleGenreFilter('Fantasy')}>Fantasy</button>
         <br />
-        <button className="btn gradient-orange text-white" onClick={() => handleGenreFilter('Kids')}>Kids</button>
+        <button className="btn gradient-orange text-white" type="button" onClick={() => handleGenreFilter('Kids')}>Kids</button>
         <br />
-        <button className="btn gradient-gray text-white" onClick={() => handleGenreFilter('Sports')}>Sports</button>
+        <button className="btn gradient-gray text-white" type="button" onClick={() => handleGenreFilter('Sports')}>Sports</button>
         <br />
-        <button className="btn gradient-yellow text-white" onClick={() => handleGenreFilter('Comedy')}>Comedy</button>
+        <button className="btn gradient-yellow text-white" type="button" onClick={() => handleGenreFilter('Comedy')}>Comedy</button>
         
       </div>
     </div>
