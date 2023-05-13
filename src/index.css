@@ -346,11 +346,8 @@
 }
 
 @media (max-width: 481px) {
-  .container{
-    padding: 0%;
-  }
   .gradient-blue{
-    margin-left: 330px;
+    margin-left: 300px;
     margin-top: -65px;
   }
   .formu {
@@ -359,12 +356,16 @@
     align-items: center;
     justify-content: center;
     width: 320px;
-    top: 30px;
+    bottom: 30px;
     left: 2px;
     padding: 0 auto;
   }
   .footer{
-    font-size: 12.5;
+    display: flex;
+    padding-left: 30px;
+    justify-content: space-between;
+    width: 480px;
+    font-size: 15.5;
   }
   .register-group{
     display: flex;
@@ -385,9 +386,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 320px;
-    max-height: 450px;
-    margin-right: 12px;
+    width: 320px;
+    height: 450px;
+    margin-right: 4px;
+  }
+  .register-group{
+   position: relative;
+
   }
   .form-group {
     display: flex;
@@ -406,7 +411,6 @@
     justify-content: center;
     flex-direction: column;
     width: 290px;
-    
     max-width: 370px;
   }
   .center{
