@@ -133,7 +133,6 @@ const Dashboard = () => {
         <button className="btn gradient-gray text-white" type="button" onClick={() => handleGenreFilter('Sports')}>Sports</button>
         <br />
         <button className="btn gradient-yellow text-white" type="button" onClick={() => handleGenreFilter('Comedy')}>Comedy</button>
-        
       </div>
     </div>
     </>

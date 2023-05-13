@@ -382,6 +382,22 @@
   
 
 }
-@media (max-width: 375px) {
+@media (max-width: 481px) {
+  .filters-genre{
+    display: none
+  }
+  .row{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    padding-right: 90px;
+  }
+  .card{
+    height: 250px;
+    width: 180px;
+  }
+  .card h4{
+    font-size: 15px;
+  }
 
 }

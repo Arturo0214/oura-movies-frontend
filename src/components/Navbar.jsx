@@ -22,6 +22,7 @@ const Navbar = () => {
   }
 
   const isLoginPage = location.pathname === '/login'
+  const isLoggedIn = !!user
 
   const onLogout = () => {
     dispatch(logout())
@@ -34,7 +35,7 @@ const Navbar = () => {
       <section className="container-fluid justify-content-start">
         <ul>
           <li className="nav oura">
-            {user ? (
+            {isLoggedIn ? (
               <Link to="/dashboard">
                 <img src={logo} alt="Logo" />
               </Link>
@@ -46,7 +47,7 @@ const Navbar = () => {
           </li>
         </ul>
         <ul>
-          {user ? (
+          {isLoggedIn ? (
             <div className="nav heading">
               <h3 className="welcome">Welcome, {user && user.name}!</h3>
             </div>
@@ -57,25 +58,22 @@ const Navbar = () => {
         <ul className="nav">
           {user?.isAdmin && (
             <div>
-            <CreateMovie
-            isOpen={isModalOpen}
-            onRequestClose={handleModalClose}
-            />
-            <button className="btn gradient-green-2 mx-2" onClick={handleModalOpen}>
-              <strong>Add Movie</strong>
-            </button>
+              <CreateMovie isOpen={isModalOpen} onRequestClose={handleModalClose} />
+              <button className="btn gradient-green-2 mx-2" onClick={handleModalOpen}>
+                <strong>Add Movie</strong>
+              </button>
             </div>
           )}
           <li className="nav">
-            {user ? (
+            {isLoggedIn ? (
               <>
-                <button className="btn gradient-blue" onClick={onLogout}>
+                <button className="btn gradient-blue4" onClick={onLogout}>
                   <strong>Log Out</strong>
                 </button>
               </>
             ) : (
               <Link
-                className="btn gradient-blue"
+                className={`btn ${isLoginPage ? 'gradient-blue1' : 'gradient-blue'}`}
                 to={isLoginPage ? '/' : '/login'}
               >
                 <strong>{isLoginPage ? 'Register' : 'Log In'}</strong>
