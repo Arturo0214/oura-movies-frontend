@@ -352,7 +352,7 @@
   .gradient-blue{
     display: flex;
     position: relative;
-    right: 80px;
+    right: 102px;
     bottom: 2px;
   }
   .formu {
@@ -361,7 +361,7 @@
     align-items: center;
     justify-content: center;
     width: 320px;
-    left: 10px;
+    left: 13px;
     top: 125px;
     padding: 0 auto;
     margin: 0;
