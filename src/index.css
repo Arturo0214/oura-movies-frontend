@@ -352,7 +352,7 @@
   .gradient-blue{
     display: flex;
     position: relative;
-    right: 102px;
+    right: 110px;
     bottom: 2px;
   }
   .formu {
@@ -368,6 +368,7 @@
   }
   .footer{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 480px;
     font-size: 8.5px;
