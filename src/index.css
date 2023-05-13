@@ -371,8 +371,9 @@
     align-items: center;
     justify-content: space-between;
     width: 480px;
-    font-size: 8.5px;
+    font-size: 9.5px;
     padding-left: 5px;
+    padding-bottom: 10px;
   }
   .register-group{
     display: flex;
