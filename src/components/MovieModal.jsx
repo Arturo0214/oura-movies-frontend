@@ -36,7 +36,7 @@ const MovieModal = ({ isOpen, onRequestClose, movie}) => {
             height='300px'
             controls
             playing
-            volume='0.8'
+            volume='0.9'
           />
         </div>
         <div className="col-6">

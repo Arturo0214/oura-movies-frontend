@@ -30,7 +30,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-primary fixed-top w-100">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top w-100">
       <section className="container-fluid justify-content-start">
         <ul>
           <li className="nav oura">
