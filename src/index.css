@@ -392,80 +392,47 @@
 
 /* Estilos para pantallas pequeñas */
 @media (max-width: 375px) {
-  .formu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 320px;
-    height: 450px;
-    margin-right: 4px;
-  }
-  .register-group{
-   position: relative;
-
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-left: 20px;
-    left: 300px;
-    max-width: 290px;
-    width: 260px;
-    margin-right: -20px;
-  }
-  .formu-2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 290px;
-    max-width: 370px;
-  }
-  .center{
-    margin-left: 0px;
-  }
-  .oura img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 120px;
-    max-height: 60px;
-    margin-top: -10px;
-    border: 1px solid white;
+  .container{
+    margin: 0 auto;
   }
   .gradient-blue{
     display: flex;
+    position: relative;
+    right: 110px;
+    bottom: 2px;
+  }
+  .formu {
+    display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to bottom, rgb(14, 242, 249), rgb(54, 141, 248));
-    border-radius: 30px;
-    margin-top: -64px;
-    margin-left: 245px;
-    max-height: 39px;
-    max-width: 70px;
-    height: 40px;
-    font-size: 12px;
-    outline: none !important;
-    box-shadow: none;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 290px;
+    top: 75px;
+    left: 20px;
+    padding: 0 auto;
+    margin: 0;
   }
   .footer{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    width: 400px;
-    height: 40px;
-    max-width: 400px;
-    font-size: 11.5px;
+    justify-content: space-between;
+    width: 480px;
+    font-size: 9.5px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+  }
+  .register-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
   .gradient-green{
-    display: flex;
-    align-items: center;
-    margin-left: 93px;
-    margin-top: 15px;
+    margin: 0 auto;
+  }
+  .center{
+    padding-top: 20px;
+    margin: 0 auto;
   }
 }
 
