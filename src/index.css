@@ -347,8 +347,8 @@
 
 @media (max-width: 481px) {
   .gradient-blue{
-    margin-left: 300px;
-    margin-top: -65px;
+    margin-left: 280px;
+    margin-top: -63px;
   }
   .formu {
     display: flex;
@@ -356,16 +356,15 @@
     align-items: center;
     justify-content: center;
     width: 320px;
-    bottom: 30px;
-    left: 2px;
+    left: 13px;
     padding: 0 auto;
   }
   .footer{
     display: flex;
-    padding-left: 30px;
     justify-content: space-between;
     width: 480px;
     font-size: 15.5;
+    padding-left: 5px;
   }
   .register-group{
     display: flex;
