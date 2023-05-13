@@ -352,6 +352,7 @@
   .gradient-blue{
     display: flex;
     position: relative;
+    right: 200px;
   }
   .formu {
     display: flex;
@@ -359,15 +360,16 @@
     align-items: center;
     justify-content: center;
     width: 320px;
+    top: 50px;
     left: 13px;
     padding: 0 auto;
-    margin: 0 auto;
+    margin: 0;
   }
   .footer{
     display: flex;
     justify-content: space-between;
     width: 480px;
-    font-size: 10px;
+    font-size: 8.5px;
     padding-left: 5px;
   }
   .register-group{
