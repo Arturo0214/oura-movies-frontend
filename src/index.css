@@ -346,10 +346,13 @@
 }
 
 @media (max-width: 481px) {
+  .container{
+    margin: 0 auto;
+  }
   .gradient-blue{
     display: flex;
     position: relative;
-    right: 49px;
+    right: 100px;
   }
   .formu {
     display: flex;
