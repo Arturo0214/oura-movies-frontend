@@ -8,7 +8,7 @@ const Footer = () => {
   const footerClassName = user ? 'footer-2' : 'footer'
 
   return (
-    <footer className={`bg-light text-center text-dark fixed-bottom ${footerClassName} w-100`}>
+    <footer className={`bg-light text-center text-dark fixed-bottom  w-100`}>
         <section className={footerClassName}>
           <a>
             <strong>Oura Movies</strong>
