@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 .formu{
   display: flex;
   justify-content: flex-start;
@@ -324,8 +329,12 @@
   flex-direction: row;
 }
 @media (max-width: 768px) {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
   .titulo{
-    
     max-width: 700px;
     max-height: 120px;
     margin-left: -70px;
@@ -380,11 +389,13 @@
     width: 200px;
     margin-top: -11px;
   }
-
-  
-
 }
 @media (max-width: 481px) {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
   .filters-genre{
     display: none
   }
