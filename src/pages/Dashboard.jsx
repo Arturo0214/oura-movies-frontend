@@ -82,43 +82,39 @@ const Dashboard = () => {
     return <Spinner />
   }
   return (
-    <>
-      <>
-        <Navbar />
-      </>
-      <>
-        <Filters
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
-          showAll={showAll}
-          handleShowAll={handleShowAll}
-          handleGenreFilter={handleGenreFilter}
+    <div className="dashboard-container">
+      <Navbar />
+      <Filters
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        showAll={showAll}
+        handleShowAll={handleShowAll}
+        handleGenreFilter={handleGenreFilter}
         />
-      <div className='titulo'>  
-        <div className="head">  
-          <h3 className="titulo-2">Search your favorite movie</h3>
-          <img src={movie} alt="" />
+        <div className='titulo'>
+        <div className="head">
+        <h3 className="titulo-2">Search your favorite movie</h3>
+        <img src={movie} alt="" />
         </div>
         <form className="head-1">
         <div className="searching">
-          <input 
-          className="form-control me-sm-2 search" 
-          type="search" 
-          placeholder="Enter your movie"
-          value={searchTerm}
-          onChange={handleSearch} />
-          <button className="btn my-2 my-sm-0" type="submit">
-          <img src={buscar}/>
-          </button>
+        <input 
+                  className="form-control me-sm-2 search" 
+                  type="search" 
+                  placeholder="Enter your movie"
+                  value={searchTerm}
+                  onChange={handleSearch} 
+                />
+        <button className="btn my-2 my-sm-0" type="submit">
+        <img src={buscar} alt="" />
+        </button>
         </div>
         </form>
-      </div>
-      </>
-      <>
-      <div className="movie-genre">
-      <div className='filters-genre'>
+        </div>
+        <div className="movie-genre">
+        <div className='filters-genre'>
         <h3 className='filter-title'>Movies Genre</h3>
         <button className="btn gradient-blue3 text-white" type="button" onClick={() => handleShowAll('Comedy')}>All Movies</button>
         <br />
@@ -133,27 +129,22 @@ const Dashboard = () => {
         <button className="btn gradient-gray text-white" type="button" onClick={() => handleGenreFilter('Sports')}>Sports</button>
         <br />
         <button className="btn gradient-yellow text-white" type="button" onClick={() => handleGenreFilter('Comedy')}>Comedy</button>
-      </div>
-    </div>
-    </>
-    <>
-      <section className="contenido col">
-        {filteredMovies.length > 0 ? (
+        </div>
+        </div>
+        <section className="contenido col">
+          {filteredMovies.length > 0 ? (
           <div className="movies row">
             {filteredMovies.map((movie) => (
-              <Cards key={movie._id} movie={movie} />
+        <Cards key={movie._id} movie={movie} />
             ))}
           </div>
-        ) : (
+            ) : (
           <h4>No movies found</h4>
-        )}
-      </section>
-
-    <> 
-      <Footer />
-    </> 
-    </>
-    </>
+          )}
+        </section>
+        <Footer />
+    </div>
   );
 }
 export default Dashboard
+         
