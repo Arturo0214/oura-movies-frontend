@@ -55,6 +55,12 @@ html, body {
 .welcome:hover{
   opacity: 0.9;
 }
+.buscar img{
+  display: flex;
+  position: relative;
+  margin-top: -7px;
+  right: 10px;
+}
 .filter-title{
   background: -webkit-linear-gradient(rgb(156, 95, 230),rgb(27, 129, 173));
   -webkit-background-clip: text;

@@ -107,7 +107,7 @@ const Dashboard = () => {
                   value={searchTerm}
                   onChange={handleSearch} 
                 />
-        <button className="btn my-2 my-sm-0" type="submit">
+        <button className="btn my-2 buscar my-sm-0" type="submit">
         <img src={buscar} alt="" />
         </button>
         </div>
